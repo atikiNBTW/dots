@@ -1,0 +1,134 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 0,
+    "modules-left": [
+        "clock",
+        "custom/gpu_temperature",
+        "temperature",
+        "mpris",
+        "privacy"
+    ],
+    "modules-center": ["hyprland/window"],
+    "modules-right": [
+        "hyprland/workspaces",
+        "tray",
+        "pulseaudio",
+        "hyprland/language",
+        "network"
+    ],
+    "hyprland/window": {
+        "format": "{class} {initialClass}"
+    },
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "tooltip": true,
+        "persistent-workspaces": {
+            "*": 9
+        },
+        "format-icons": {
+		      "1": "󰈹 ",
+		      "2": "󰍡 ",
+		      "3": " ",
+          "4": " ",
+          "5": " ",
+          "6": "󰍳 ",
+          "7": " ",
+          "8": " ",
+          "9": " "
+        }
+    },
+    "privacy": {
+	    "icon-spacing": 5,
+	    "icon-size": 16,
+	    "transition-duration": 365,
+	    "modules": [
+		    {
+			    "type": "screenshare",
+		      "tooltip": true,
+		      "tooltip-icon-size": 26
+	      },
+	      {
+	      	"type": "audio-out",
+	      	"tooltip": true,
+	      	"tooltip-icon-size": 26
+	      },
+      	{
+	      	"type": "audio-in",
+	      	"tooltip": true,
+      		"tooltip-icon-size": 26
+      	}
+      ]
+    },
+    "temperature": {
+        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 70,
+        "format-critical": "{temperatureC}°C",
+        "format": "  {temperatureC}°C",
+        "interval": 1,
+        "tooltip": false
+    },
+    "custom/gpu_temperature": {
+        "interval": 5,
+        "exec": "sensors -j amdgpu-pci-0100 | jq '.\"amdgpu-pci-0100\".\"edge\".\"temp1_input\"' | awk '{print int($1)}'",
+        "format": "󰢮  {} °C",
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
+    },
+    "mpris": {
+	    "format": "{status_icon} {player_icon}",
+	    "player-icons": {
+	    	"default": "▶",
+	    	"mpv": " ",
+        "firefox": "󰈹 ",
+        "discord": " "
+	    },
+    	"status-icons": {
+    		"paused": "<span foreground='yellow'>⏸ </span>",
+        "playing": "<span foreground='green'>▶ </span>",
+        "stopped": "<span foreground='red'>󰓛 </span>"
+    	}
+    },
+    "clock": {
+        "format": "{:%A  %T   %d/%m}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "interval": 1
+    },
+    "hyprland/language": {
+       "format": "{short}"
+    },
+    "network": {
+      "format": "{ifname}",
+      "format-wifi": "{essid} ({signalStrength}%)  ",
+      "format-ethernet": "{ifname} 󰈀 ",
+      "format-disconnected": "", // hide the module
+      "tooltip-format": "{ifname} via {gwaddr} 󰈀 ",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+      "tooltip-format-ethernet": "{ifname}  ",
+      "on-click": "alacritty -e nmtui"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "scroll-step": 1.0,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    }
+}
