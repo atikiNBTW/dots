@@ -1,0 +1,17 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[character]
+format = "  $symbol (bold)"
+error_symbol = "[✖](bold red) "
+
+[cmd_duration]
+min_time = 0
+show_milliseconds = true
+format = " took [$duration]($style)"
+
+[directory]
+truncation_length = 10
