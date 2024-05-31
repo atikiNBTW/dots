@@ -1,0 +1,1 @@
+/home/atikinbtw/.p10k.zsh
