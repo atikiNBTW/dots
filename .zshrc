@@ -60,6 +60,13 @@ bindkey "^[[3;2~" delete-char
 bindkey "^[[3;6~" delete-char
 bindkey -r "^["
 
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vi'
+else
+  export EDITOR='nvim'
+fi
+
 # Aliases
 alias zshconfig="$EDITOR ~/.zshrc"
 alias update="sudo flatpak update -y && yay -Syu --noconfirm"
@@ -73,6 +80,8 @@ alias ls='eza --icons -F -H --group-directories-first --git'
 alias hyprconfig="$EDITOR ~/.config/hypr/hyprland.conf"
 alias sctl="systemctl"
 alias l="ls -ila"
+alias ssh="startSshAgent && ssh "
+alias gits="git status"
 
 # Completions
 autoload -U compinit && compinit
@@ -95,13 +104,6 @@ setopt correct
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vi'
-else
-  export EDITOR='nvim'
-fi
-
 # History
 HISTSIZE=500000
 HISTFILE=~/.zsh_history
@@ -114,3 +116,12 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups
+
+# SSH agent startup
+function startSshAgent() {
+  if [[ -$parameters[SSH_AGENT_PID]- = *-export-* ]]
+  eval "$(ssh-agent -s)" > /dev/null
+  echo "WARNING! Started ssh agent!"
+
+  ssh-add ~/.ssh/id_rsa
+}
