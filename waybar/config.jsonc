@@ -12,8 +12,8 @@
     "modules-center": [
         "hyprland/workspaces",
         "tray",
-        "pulseaudio",
-        "mpris"
+        "mpris",
+        "pulseaudio"
     ],
     "hyprland/workspaces": {
         "all-outputs": true,

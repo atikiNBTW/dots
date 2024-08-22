@@ -57,15 +57,15 @@ window#waybar {
 }
 
 #tray {
+    /* border-radius: 10px 0px 0px 10px; */
     /* border-radius: 10px; */
     /* margin-right: 6px; */
 }
 
 #mpris {
-    border-radius: 0px 10px 0px 0px;
     /* margin-left: 6px; */
 }
 
 #pulseaudio {
-    /* border-radius: 10px 0px 0px 10px; */
+    border-radius: 0px 10px 0px 0px;
 }

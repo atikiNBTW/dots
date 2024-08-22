@@ -14,6 +14,8 @@ if [[ $(tty) =~ "^/dev/tty.*$" ]]; then
     if [[ "$response" == "Y" ]]; then
         sudo flatpak update -y && yay -Syu --noconfirm
     fi
+else
+    fortune | cowsay -f stegosaurus
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -100,6 +102,7 @@ zinit cdreplay -q
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 setopt correct
+export POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
