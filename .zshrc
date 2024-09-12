@@ -79,6 +79,7 @@ alias fixsound="systemctl --user restart wireplumber pipewire pipewire-pulse && 
 alias cd="z"
 alias ls='eza --icons -F -H --group-directories-first --git'
 # alias -g monitor="entr -cc "
+alias wayvncc="wayvnc --gpu -r --max-fps=120 -p -Ldebug $(ip -f inet addr show enp3s0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')"
 alias hyprconfig="$EDITOR ~/.config/hypr/hyprland.conf"
 alias sctl="systemctl"
 alias fixdolphinmime="XDG_MENU_PREFIX=arch- kbuildsycoca6"
