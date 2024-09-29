@@ -16,6 +16,10 @@ if [[ $(tty) =~ "^/dev/tty.*$" ]]; then
     fi
 else
     fortune | cowsay -f stegosaurus
+    if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
+        exec tmux new-session -t awesome -e PWD=$PWD
+        return
+    fi
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.

@@ -1,0 +1,9 @@
+googlevideo.com
+youtube.com
+ytimg.com
+gstatic.com
+yt3.ggpht.com
+ggpht.com
+googleusercontent.com
+youtu.be
+youtubei.googleapis.com
