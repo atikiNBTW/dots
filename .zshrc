@@ -15,11 +15,12 @@ if [[ $(tty) =~ "^/dev/tty.*$" ]]; then
         sudo flatpak update -y && yay -Syu --noconfirm
     fi
 else
-    fortune | cowsay -f stegosaurus
     if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
-        exec tmux new-session -t awesome -e PWD=$PWD
+        exec tmux new-session -t awesome
         return
-    fi
+    fi 
+    fortune | cowsay -f stegosaurus
+    # systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_SESSION_DESKTOP GPG_TTY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE &> /dev/null
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -80,12 +81,14 @@ alias install="sudo pacman -S "
 alias installyay="yay -S "
 alias finstall="flatpak install "
 alias fixsound="systemctl --user restart wireplumber pipewire pipewire-pulse && sudo systemctl restart bluetooth"
+alias fixidea="rm -f /home/atikinbtw/.var/app/com.jetbrains.IntelliJ-IDEA-Community/config/JetBrains/IdeaIC*/.lock"
 alias cd="z"
 alias ls='eza --icons -F -H --group-directories-first --git'
 # alias -g monitor="entr -cc "
 alias wayvncc="wayvnc --gpu -r --max-fps=120 -p -Ldebug $(ip -f inet addr show enp3s0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')"
 alias hyprconfig="$EDITOR ~/.config/hypr/hyprland.conf"
 alias sctl="systemctl"
+alias sctlu="systemctl --user"
 alias fixdolphinmime="XDG_MENU_PREFIX=arch- kbuildsycoca6"
 alias l="ls -ila"
 alias ssh="startSshAgent && ssh "
